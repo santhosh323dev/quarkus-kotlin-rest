@@ -42,3 +42,4 @@ jobs:
           push: true
           tags: latest
           file: docker/Dockerfile-deploy
+          password: ${{ secrets.GITHUB_TOKEN }}
