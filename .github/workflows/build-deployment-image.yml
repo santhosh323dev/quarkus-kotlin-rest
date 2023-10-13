@@ -31,6 +31,8 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
+          echo "Triggering another workflow with GITHUB_RUN_ID: $GITHUB_RUN_ID"
+          echo "Triggering another workflow with GITHUB_RUN_NUMBER: GITHUB_RUN_NUMBER"
           docker buildx create --use
           docker buildx build --file ./docker/Dockerfile-deploy --tag ghcr.io/${{ github.repository }}/deploy:latest --push docker
         
