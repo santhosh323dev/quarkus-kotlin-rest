@@ -14,7 +14,7 @@ jobs:
 
     env: # Define environment variables
       DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      IMAGE_TAG: ${{ github.sha }}
+      IMAGE_TAG: V1.0-${{ github.run_id }}
 
     steps:
     - uses: actions/checkout@v3
@@ -30,3 +30,13 @@ jobs:
         echo "Triggering another workflow with GITHUB_RUN_ID: $GITHUB_RUN_ID"
         echo "Triggering another workflow with GITHUB_RUN_NUMBER: GITHUB_RUN_NUMBER"
         ./gradlew --no-daemon clean build imageBuild imagePush
+
+    - name: Set MyValue
+      id: set_value
+      run: echo "::set-output name=my_value::V1.0-${{ github.run_id }}"
+
+    - name: Create Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: ./path/to/artifact
