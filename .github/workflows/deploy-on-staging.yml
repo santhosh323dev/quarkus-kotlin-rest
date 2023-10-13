@@ -1,0 +1,21 @@
+name: Use Custom Docker Image
+
+on:
+  workflow_run:
+    workflows:
+      - "publish Image to Cloud Container registry"
+    types:
+      - completed
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-abc:
+    runs-on: ubuntu-latest
+    container: ghcr.io/${{ github.repository }}/deploy:latest
+    steps:
+      - run: echo "Running 1.2.0"
+      - run: doctl auth init
+      - run: doctl kubernetes cluster kubeconfig save ${secrets.STAGING_K8S_CLUSTER_ID}
+      - run: kubectl cluster-info
