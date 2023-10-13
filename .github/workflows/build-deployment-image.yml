@@ -42,4 +42,4 @@ jobs:
           push: true
           tags: latest
           file: docker/Dockerfile-deploy
-          secrets: ${{ secrets.GH_CR_TOKEN }}
+          secrets: ${{ secrets.GITHUB_TOKEN }}
