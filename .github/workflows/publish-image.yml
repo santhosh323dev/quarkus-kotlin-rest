@@ -13,8 +13,6 @@ on:
       - "Build-And-Test"
     types:
       - completed
-  push:
-    branches: [ "main" ]
 
 permissions:
   contents: read

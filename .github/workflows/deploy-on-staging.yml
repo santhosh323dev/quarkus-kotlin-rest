@@ -6,9 +6,6 @@ on:
       - "publish Image to Cloud Container registry"
     types:
       - completed
-  push:
-    branches:
-      - main
 
 jobs:
   deploy-on-staging-k8s-cluster:
@@ -31,7 +28,7 @@ jobs:
         env: # Define environment variables
           STAGING_K8S_CLUSTER_ID: ${{ secrets.STAGING_K8S_CLUSTER_ID }}
         run: |
-          docker run -it ghcr.io/${{ github.repository }}/deploy:latest sh -c "
+          docker run ghcr.io/${{ github.repository }}/deploy:latest sh -c "
             echo 'log into DO'
             doctl auth init
             doctl kubernetes cluster kubeconfig save ${STAGING_K8S_CLUSTER_ID}
