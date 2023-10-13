@@ -28,7 +28,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    needs: ["start", "build-and-test"]
+    needs: ["start", "Build-And-Test"]
 
     env: # Define environment variables
       DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
