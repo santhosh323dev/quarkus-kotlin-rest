@@ -1,0 +1,17 @@
+# Docker image for deployment to kubernetes on digital ocean
+
+FROM docker:stable
+
+ARG DOCTL_VERSION=1.77.0
+
+RUN apk add --update --no-cache \
+  build-base \
+  curl \
+  tar\
+  && curl -L -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl \
+  && chmod +x /usr/local/bin/kubectl \
+  && curl -L -o /usr/local/bin/skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 \
+  && chmod +x /usr/local/bin/skaffold \
+  && curl -sL https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz | tar xvz -C /usr/local/bin \
+  && chmod +x /usr/local/bin/doctl \
+  && apk del tar
