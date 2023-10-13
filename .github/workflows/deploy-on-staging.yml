@@ -28,6 +28,8 @@ jobs:
         env: # Define environment variables
           STAGING_K8S_CLUSTER_ID: ${{ secrets.STAGING_K8S_CLUSTER_ID }}
         run: |
+          echo "Triggering another workflow with GITHUB_RUN_ID: $GITHUB_RUN_ID"
+          echo "Triggering another workflow with GITHUB_RUN_NUMBER: GITHUB_RUN_NUMBER"
           docker run ghcr.io/${{ github.repository }}/deploy:latest sh -c "
             echo 'log into DO'
             doctl auth init

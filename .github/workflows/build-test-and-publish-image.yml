@@ -26,4 +26,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Build with Gradle and publish image to cloud registry
-      run: ./gradlew --no-daemon imageBuild imagePush -x tes
+      run: |
+        echo "Triggering another workflow with GITHUB_RUN_ID: $GITHUB_RUN_ID"
+        echo "Triggering another workflow with GITHUB_RUN_NUMBER: GITHUB_RUN_NUMBER"
+        ./gradlew --no-daemon clean build imageBuild imagePush
