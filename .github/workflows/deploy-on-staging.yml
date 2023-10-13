@@ -25,7 +25,7 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.GH_CR_TOKEN }}
 
       - name: Pull the Docker image
-        run: docker pull ghcr.io/${{ github.repository }}/your-image-name:latest
+        run: docker pull ghcr.io/${{ github.repository }}/deploy:latest
 
       - name: Run commands in the Docker container
         env: # Define environment variables
