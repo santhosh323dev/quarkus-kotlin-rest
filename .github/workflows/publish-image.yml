@@ -25,6 +25,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env: # Define environment variables
+      DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
