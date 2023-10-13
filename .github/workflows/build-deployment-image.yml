@@ -11,6 +11,8 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
+    env: # Define environment variables
+      CR_PAT: ${{ secrets.GITHUB_TOKEN }}
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
       contents: read
@@ -42,4 +44,3 @@ jobs:
           push: true
           tags: latest
           file: docker/Dockerfile-deploy
-          secrets: ${{ secrets.GITHUB_TOKEN }}
