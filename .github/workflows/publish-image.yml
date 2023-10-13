@@ -9,7 +9,8 @@ name: publish Image to Cloud Container registry
 
 on:
   workflow_run:
-    workflows: "Build-And-Test"
+    workflows:
+      - "Build-And-Test"
     types:
       - completed
   push:
