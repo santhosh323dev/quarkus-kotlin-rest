@@ -1,9 +1,9 @@
-name: Use Custom Docker Image
+name: Deploy application on Staging
 
 on:
   workflow_run:
     workflows:
-      - "publish Image to Cloud Container registry"
+      - "Build-Test-And-Publish-Image"
     types:
       - completed
 
@@ -21,7 +21,7 @@ jobs:
           DOCKER_USERNAME: ${{ github.actor }}
           DOCKER_PASSWORD: ${{ secrets.GH_CR_TOKEN }}
 
-      - name: Pull the Docker image
+      - name: Pull the Docker image for deployment
         run: docker pull ghcr.io/${{ github.repository }}/deploy:latest
 
       - name: Run commands in the Docker container
