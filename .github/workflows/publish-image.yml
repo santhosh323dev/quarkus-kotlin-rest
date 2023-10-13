@@ -18,7 +18,13 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start Job
+        run: echo "Starting the Target Workflow"
+
+  push-image-to-cloud-registry:
 
     runs-on: ubuntu-latest
 
